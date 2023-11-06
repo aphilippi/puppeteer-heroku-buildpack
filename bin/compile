@@ -87,6 +87,9 @@ PACKAGES="
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 APT_FLAGS="--allow-downgrades --allow-remove-essential --allow-change-held-packages"
 
+# remove postgres from /etc/apt/sources.list
+sed -i '/postgres/d' /etc/apt/sources.list
+
 topic "Updating apt caches"
 apt-get $APT_OPTIONS update | indent
 
